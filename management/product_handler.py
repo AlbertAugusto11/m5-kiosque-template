@@ -12,7 +12,7 @@ def get_product_by_id(id: int):
 def get_products_by_type(type: str):
     list_type = []
     for i in range(len(products)):
-        if products[i].get("type") == type:
+        if products[i].get("type") == type.lower():
             list_type.append(products[i])
     return list_type
 
