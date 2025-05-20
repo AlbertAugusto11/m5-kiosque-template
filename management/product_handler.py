@@ -2,6 +2,9 @@ from menu import products
 
 
 def get_product_by_id(id: int):
+    if type(id) is not int:
+        raise TypeError("product id must be an int")
+    
     for i in range(len(products)):
         if products[i].get("_id") == id:
             return products[i]
@@ -9,10 +12,13 @@ def get_product_by_id(id: int):
         return {}
 
 
-def get_products_by_type(type: str):
+def get_products_by_type(tipo: str):
+    if type(tipo) is not str:
+        raise TypeError("product type must be a str")
+    
     list_type = []
     for i in range(len(products)):
-        if products[i].get("type") == type:
+        if products[i].get("type") == tipo:
             list_type.append(products[i])
     return list_type
 
