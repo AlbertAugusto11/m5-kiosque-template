@@ -69,3 +69,29 @@ def menu_report():
     maior_type = list(maior_type)[0]
 
     return f"Products Count: {product_count} - Average Price: ${average_price} - Most Common Type: {maior_type}"
+
+
+def add_product_extra(products: list, *chaves, **kwargs):
+    dict_1 = kwargs
+    list_chaves = []
+    for n in list(dict_1):
+        if n in chaves:
+            list_chaves.append(n)
+        else:
+            del dict_1[n]
+    for n in chaves:
+        if n not in list_chaves:
+            item = f"field <{n}> is required"
+            raise TypeError(item)
+
+    if len(products) == 0:
+        dict_1["_id"] = 1
+    else:
+        x = []
+        for y in products:
+            x.append(y["_id"])
+            x.sort()
+        dict_1["_id"] = x[-1] + 1
+    products.append(dict_1)
+
+    return dict_1
